@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Sanyappc.Extensions.AppOptions)](https://www.nuget.org/packages/Sanyappc.Extensions.AppOptions)
 
-A .NET library for typed, validated application configuration. Integrates with `IHostApplicationBuilder` to bind options from configuration, register them in DI, and validate them — both eagerly at startup and lazily on first use — using Data Annotations and optional custom validation logic.
+A .NET library for typed, validated application configuration. Integrates with `IHostApplicationBuilder` to bind options from a configuration section, register them in DI, and validate them — both eagerly at startup and lazily on first use — using Data Annotations and optional custom validation logic.
 
 ## Installation
 
