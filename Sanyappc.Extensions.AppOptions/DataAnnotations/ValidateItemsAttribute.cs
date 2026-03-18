@@ -28,7 +28,8 @@ public sealed class ValidateItemsAttribute : ValidationAttribute
             {
                 ValidationContext itemValidationContext = new(item ?? new object(), validationContext, validationContext.Items)
                 {
-                    DisplayName = validationContext.DisplayName
+                    DisplayName = validationContext.DisplayName,
+                    MemberName = validationContext.MemberName
                 };
 
                 ValidationResult? result = itemValidationAttribute.GetValidationResult(item, itemValidationContext);

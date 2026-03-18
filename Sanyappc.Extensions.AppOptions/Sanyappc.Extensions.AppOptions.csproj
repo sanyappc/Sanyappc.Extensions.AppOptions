@@ -4,7 +4,20 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>Alexander Mokrov</Authors>
+    <Copyright>Copyright (c) 2026 Alexander Mokrov</Copyright>
+    <Description>A .NET library for typed, validated application configuration. Integrates with IHostApplicationBuilder to bind options from configuration, register them in DI, and validate them using Data Annotations and optional custom validation logic.</Description>
+    <PackageTags>options configuration validation dataannotations hosting</PackageTags>
+    <PackageProjectUrl>https://github.com/sanyappc/Sanyappc.Extensions.AppOptions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sanyappc/Sanyappc.Extensions.AppOptions</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.*" />
