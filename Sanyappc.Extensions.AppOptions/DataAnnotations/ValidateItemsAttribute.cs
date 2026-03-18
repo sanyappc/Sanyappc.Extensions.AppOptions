@@ -26,11 +26,16 @@ public sealed class ValidateItemsAttribute : ValidationAttribute
             int index = 0;
             foreach (object? item in enumerable)
             {
-                if (!itemValidationAttribute.IsValid(item))
+                ValidationContext itemValidationContext = new(item ?? new object(), validationContext.Items)
                 {
-                    string errorMessage = itemValidationAttribute.FormatErrorMessage(validationContext.DisplayName);
+                    DisplayName = validationContext.DisplayName
+                };
+
+                ValidationResult? result = itemValidationAttribute.GetValidationResult(item, itemValidationContext);
+                if (result is not null && result != ValidationResult.Success)
+                {
                     return new ValidationResult(
-                        $"{errorMessage} (item at index {index})",
+                        $"{result.ErrorMessage} (item at index {index})",
                         validationContext.MemberName is not null ? [validationContext.MemberName] : null);
                 }
                 index++;
