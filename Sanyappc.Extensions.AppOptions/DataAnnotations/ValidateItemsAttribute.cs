@@ -26,7 +26,7 @@ public sealed class ValidateItemsAttribute : ValidationAttribute
             int index = 0;
             foreach (object? item in enumerable)
             {
-                ValidationContext itemValidationContext = new(item ?? new object(), validationContext.Items)
+                ValidationContext itemValidationContext = new(item ?? new object(), validationContext, validationContext.Items)
                 {
                     DisplayName = validationContext.DisplayName
                 };
@@ -38,6 +38,7 @@ public sealed class ValidateItemsAttribute : ValidationAttribute
                         $"{result.ErrorMessage} (item at index {index})",
                         validationContext.MemberName is not null ? [validationContext.MemberName] : null);
                 }
+
                 index++;
             }
         }
