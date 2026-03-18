@@ -42,7 +42,7 @@ public static class AppOptionsHostApplicationBuilderExtensions
         ArgumentNullException.ThrowIfNull(builder);
 
         options = AddAppOptionsPrivate<TAppOptions, TAppOptionsValidator>(builder, name, section)
-            ?? throw new InvalidOperationException($"Configuration for {typeof(TAppOptions).Name} is missing.");
+            ?? Activator.CreateInstance<TAppOptions>();
 
         TAppOptionsValidator optionsValidator = (TAppOptionsValidator)(Activator.CreateInstance(typeof(TAppOptionsValidator), name)
             ?? throw new InvalidOperationException($"Could not create an instance of {typeof(TAppOptionsValidator).Name}. Ensure it has a constructor with a single string? parameter for the options name."));
