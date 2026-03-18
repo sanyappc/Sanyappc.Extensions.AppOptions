@@ -111,6 +111,27 @@ Register with the custom validator:
 builder.AddAppOptions<DatabaseOptions, DatabaseOptionsValidator>(section: "Database");
 ```
 
+### Injecting services into a validator
+
+Custom validators support constructor injection. Declare additional parameters after `string? name` — they are resolved from the DI container at runtime:
+
+```csharp
+public class DatabaseOptionsValidator(string? name, IHostEnvironment environment)
+    : AppOptionsValidator<DatabaseOptions>(name)
+{
+    protected override void OnValidate(
+        string? name,
+        DatabaseOptions options,
+        ValidateOptionsResultBuilder builder)
+    {
+        if (environment.IsProduction() && options.ConnectionString.Contains("localhost"))
+            builder.AddError("localhost is not allowed in production.");
+    }
+}
+```
+
+> **Note:** Service injection only works in the DI/runtime validation path. When using the `out` overload — which validates eagerly before the host is built — only the `string? name` parameter is available and additional dependencies cannot be resolved.
+
 ## DataAnnotations
 
 The library ships extra validation attributes in the `Sanyappc.Extensions.AppOptions.DataAnnotations` namespace.

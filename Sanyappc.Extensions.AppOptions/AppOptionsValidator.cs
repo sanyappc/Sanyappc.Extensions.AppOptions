@@ -14,6 +14,8 @@ public abstract class AppOptionsValidator<TAppOptions>(string? name) : IValidate
         if (Name is not null && Name != name)
             return ValidateOptionsResult.Skip;
 
+        ArgumentNullException.ThrowIfNull(options);
+
         ValidateOptionsResultBuilder validateOptionsResultBuilder = new();
 
         ValidateOptionsResult validateOptionsResult = new DataAnnotationValidateOptions<TAppOptions>(name)
