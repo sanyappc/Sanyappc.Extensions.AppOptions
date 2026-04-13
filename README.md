@@ -145,6 +145,15 @@ Validates that the value is a path to an existing file.
 public string CertificatePath { get; set; } = string.Empty;
 ```
 
+### `IpAddressAttribute`
+
+Validates that the value is a valid IP address (IPv4 or IPv6).
+
+```csharp
+[IpAddress]
+public string ServerAddress { get; set; } = string.Empty;
+```
+
 ### `JsonAttribute`
 
 Validates that the value is well-formed JSON.
